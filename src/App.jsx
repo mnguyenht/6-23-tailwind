@@ -164,6 +164,14 @@ function FilterableProductTable({ products }) {
         searchText={searchText}
         setSearchText={setSearchText}
       />
+      <Calendar
+        mode="single"
+        className="rounded-md border shadow-sm"
+        captionLayout="dropdown"
+      />
+      <div className="flex min-h-svh flex-col items-center justify-center">
+        <Button>Click me</Button>
+      </div>
     </div>
   );
 }
@@ -182,18 +190,9 @@ export default function App() {
 
   return (
     <>
-    <div class="m-auto">
-      <FilterableProductTable products={PRODUCTS} />
-      <div className="flex min-h-svh flex-col items-center justify-center">
-        <Button>Click me</Button>
+      <div class="m-auto">
+        <FilterableProductTable products={PRODUCTS} />
       </div>
-      <Calendar
-        mode="single"
-        className="rounded-md border shadow-sm"
-        captionLayout="dropdown"
-      />
-        </div>
     </>
-  
   );
 }
