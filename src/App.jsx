@@ -1,6 +1,7 @@
-import { useEffect, useState, useMemo, useCallback} from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import "./App.css";
-
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 
 function ProductRow({ product }) {
   return (
@@ -28,7 +29,6 @@ function ProductCategoryRow({ category }) {
   );
 }
 
-
 function ProductTable({ inStockOnly, products, searchText, setSearchText }) {
   const rows = [];
   let lastCategory = null;
@@ -42,11 +42,7 @@ function ProductTable({ inStockOnly, products, searchText, setSearchText }) {
       return;
     }
     if (product.category !== lastCategory) {
-      rows.push(
-        <ProductCategoryRow
-          category={product.category}
-        />
-      );
+      rows.push(<ProductCategoryRow category={product.category} />);
     }
     rows.push(<ProductRow product={product} />);
     lastCategory = product.category;
@@ -99,9 +95,13 @@ function SearchBar({ inStockOnly, setInStockOnly, searchText, setSearchText }) {
     </form>
   );
 }
-function SearchBar2({ inStockOnly, setInStockOnly, searchText, setSearchText }) {
+function SearchBar2({
+  inStockOnly,
+  setInStockOnly,
+  searchText,
+  setSearchText,
+}) {
   console.log("🔄 SearchBar2 rendered");
-
 
   return (
     <form
@@ -141,9 +141,9 @@ function FilterableProductTable({ products }) {
   const [isFlag, setIsFlag] = useState(false);
 
   return (
-    <div 
-    // style={{ border: "1px solid" }}
-    class="border-2 m-16"
+    <div
+      // style={{ border: "1px solid" }}
+      class="border-2 m-16"
     >
       <SearchBar
         inStockOnly={inStockOnly}
@@ -151,7 +151,7 @@ function FilterableProductTable({ products }) {
         searchText={searchText}
         setSearchText={setSearchText}
       />
-            <SearchBar2
+      <SearchBar2
         inStockOnly={inStockOnly}
         setInStockOnly={setInStockOnly}
         searchText={searchText}
@@ -178,9 +178,22 @@ const PRODUCTS = [
 ];
 
 export default function App() {
+  // const [date, setDate] = (React.useState < Date) | (undefined > new Date());
+
   return (
     <>
+    <div class="m-auto">
       <FilterableProductTable products={PRODUCTS} />
+      <div className="flex min-h-svh flex-col items-center justify-center">
+        <Button>Click me</Button>
+      </div>
+      <Calendar
+        mode="single"
+        className="rounded-md border shadow-sm"
+        captionLayout="dropdown"
+      />
+        </div>
     </>
+  
   );
 }
